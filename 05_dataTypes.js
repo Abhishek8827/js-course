@@ -1,4 +1,4 @@
-//! primitive & non primitive
+//! primitive & non primitive (preference)
 
 // primitive 7 types => strings, number, boolean, null, undefined, bigInt, symbol
 const username = "Abhishek";
@@ -27,7 +27,7 @@ const id = Symbol("1255");
 const pen = Symbol("1255");
 console.log(id === pen);
 
-// non primitive also reference type => objects, array, functions
+// non primitive also preference type => objects, array, functions
 
 const languages = ["js", "node", "react"];
 
