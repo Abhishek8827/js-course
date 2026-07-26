@@ -6,7 +6,6 @@ let valueInNumber = Number(height);
 
 console.log(typeof valueInNumber);
 console.log(valueInNumber);
-
 // to number Number()
 // "33" => 33
 // "3a" => NaN
@@ -16,3 +15,5 @@ console.log(valueInNumber);
 // 1 -> true, 0 -> false
 // "" -> false
 // "Hello" -> true
+
+// to string String()
