@@ -7,6 +7,6 @@ console.log(accountability);
 // bigint
 // boolean
 // undefined: not define any data in var
-// null: empty stored box
+// null: empty stored box (its typeof is object - js lang. error)
 // symbol
 // object
