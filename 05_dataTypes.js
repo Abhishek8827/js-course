@@ -41,3 +41,6 @@ const myFunction = function () {
 };
 
 console.log(typeof (myObj, myFunction, languages));
+
+// ! static (before execution) v/s dynamic (while program running) := when type checking occur`s and how variables are declared.
+// ? (js check error when program is running )
