@@ -1,2 +1,3 @@
 // memory allocation technics
-// stack - primitiev & heap - non primitive
+// stack - primitiev  - gets values
+// heap - non primitive - gets reference
