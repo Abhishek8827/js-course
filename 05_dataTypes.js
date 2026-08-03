@@ -25,7 +25,7 @@ const dataTable = [
 
 const id = Symbol("1255");
 const pen = Symbol("1255");
-// both are diff even same value because we use symbol
+// both are diff. even same value because we use symbol
 console.log(id === pen);
 
 // non primitive also preference type => objects, array, functions
