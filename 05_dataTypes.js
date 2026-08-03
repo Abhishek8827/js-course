@@ -28,7 +28,7 @@ const pen = Symbol("1255");
 // both are diff. even same value because we use symbol
 console.log(id === pen);
 
-// non primitive also preference type => objects, array, functions
+// non primitive also preference type => objects, array, functions.
 
 // array:
 const languages = ["js", "node", "react"];
