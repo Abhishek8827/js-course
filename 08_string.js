@@ -10,4 +10,4 @@ console.log(`Hello my name is ${userName} ${lastName} and my age is: ${age}`); /
 // console.log("Freind's");
 
 const fatherName = new String("Rajesh");
-console.log(fatherName);
+console.log(fatherName.toUpperCase);
