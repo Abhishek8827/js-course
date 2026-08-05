@@ -11,8 +11,8 @@ console.log(`Hello my name is ${userName} ${lastName} and my age is: ${age}`); /
 
 const fatherName = new String("  Rajesh    ");
 // console.log(fatherName.toUpperCase());
-// console.log(fatherName.charAt(2));
-// console.log(fatherName.indexOf("a"));
+console.log(fatherName.charAt(2));
+console.log(fatherName.indexOf("a"));
 
 // const newString = fatherName.slice(-4);
 // console.log(fatherName.trim()); // works on on whitespaces and also has trimEnd & trimStart
