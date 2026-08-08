@@ -1,6 +1,8 @@
-const score = 450.526;
+const score = 4500526;
 
 console.log(score.toPrecision(3));
+
+console.log(score.toLocaleString("en-US"));
 
 // let grid = [["b", "c"]];
 // grid[0].unshift(["a", "abhi"]); // Target row 0, add to front
