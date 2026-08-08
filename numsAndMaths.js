@@ -1,6 +1,6 @@
 const score = 4500526;
 console.log(typeof score, score);
-console.log(typeof score.toString());
+console.log(score.toString());
 
 const score1 = new Number(100);
 console.log(score1);
@@ -16,3 +16,5 @@ console.log(score.toLocaleString("en-US"));
 // let grid = [["a", "b"]];
 // grid.push("c"); // Adds a new row at the end
 // console.log(grid); // Output: [ ["a", "b"], ["c", "d"] ]
+
+// ..
