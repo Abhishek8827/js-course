@@ -1,4 +1,8 @@
 const score = 4500526;
+console.log(typeof score, score);
+
+const score1 = new Number(100);
+console.log(score1);
 
 console.log(score.toPrecision(3));
 
