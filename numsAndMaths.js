@@ -1,5 +1,6 @@
 const score = 4500526;
 console.log(typeof score, score);
+console.log(typeof score.toString());
 
 const score1 = new Number(100);
 console.log(score1);
