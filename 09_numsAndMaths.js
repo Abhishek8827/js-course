@@ -34,4 +34,9 @@ console.log("Math.random():", Math.random());
 console.log(
   "Random number between 1 and 10:",
   Math.floor(Math.random() * 10) + 1,
-); // Random number between 1 and 10
+); // Random number between 1 and 10 & +1 for to add to 0 if 0 is randomly generated there
+
+const min = 10;
+const max = 20;
+const randomNum = Math.floor(Math.random() * (max - min + 1)) + min; // Random number between min and max (inclusive)
+console.log(`Random number between ${min} and ${max}:`, randomNum);
