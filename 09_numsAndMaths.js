@@ -18,4 +18,20 @@ const score1 = new Number(100); //creates a Number object rather than a primitiv
 // grid.push("c"); // Adds a new row at the end
 // console.log(grid); // Output: [ ["a", "b"], ["c", "d"] ]
 
-// +++++++++++++++++++ Maths ++++++++++++++++
+// +++++++++++++++++++ Maths +++++++++++++++++++++
+console.log("Math:", Math);
+console.log("Math.PI:", Math.PI);
+console.log("Math.E:", Math.E);
+console.log("Math.round(4.7):", Math.round(4.7));
+console.log("Math.ceil(4.2):", Math.ceil(4.2));
+console.log("Math.floor(4.9):", Math.floor(4.9));
+console.log("Math.abs(-4):", Math.abs(-4));
+console.log("Math.sqrt(16):", Math.sqrt(16));
+console.log("Math.pow(2, 3):", Math.pow(2, 3));
+console.log("Math.min(1, 2, 3, 4, 5):", Math.min(1, 2, 3, 4, 5));
+console.log("Math.max(1, 2, 3, 4, 5):", Math.max(1, 2, 3, 4, 5));
+console.log("Math.random():", Math.random());
+console.log(
+  "Random number between 1 and 10:",
+  Math.floor(Math.random() * 10) + 1,
+); // Random number between 1 and 10
