@@ -16,5 +16,3 @@ console.log(score.toLocaleString("en-US"));
 // let grid = [["a", "b"]];
 // grid.push("c"); // Adds a new row at the end
 // console.log(grid); // Output: [ ["a", "b"], ["c", "d"] ]
-
-// ..
