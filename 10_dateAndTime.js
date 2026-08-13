@@ -14,21 +14,21 @@ console.log("myDate.toISOString():", myDate.toISOString()); // ISO 8601 date str
 console.log("myDate.toJSON():", myDate.toJSON()); // JSON representation of the date
 console.log("myDate.toString():", myDate.toString()); // Human-readable string representation of the date
 console.log("myDate.toUTCString():", myDate.toUTCString()); //  UTC string representation of the date
-
+// 7722894108
 // practice date and time
-const currentDate = new Date();
-console.log("Current Date:", currentDate);
-const currentYear = currentDate.getFullYear();
-console.log("Current Year:", currentYear);
-const currentMonth = currentDate.getMonth() + 1;
-console.log("Current Month:", currentMonth);
-const currentDay = currentDate.getDate();
-console.log("Current Day:", currentDay);
-const currentHours = currentDate.getHours();
-console.log("Current Hours:", currentHours);
+// const currentDate = new Date();
+// console.log("Current Date:", currentDate);
+// const currentYear = currentDate.getFullYear();
+// console.log("Current Year:", currentYear);
+// const currentMonth = currentDate.getMonth() + 1;
+// console.log("Current Month:", currentMonth);
+// const currentDay = currentDate.getDate();
+// console.log("Current Day:", currentDay);
+// const currentHours = currentDate.getHours();
+// console.log("Current Hours:", currentHours);
 
-let myCreateDate = new Date(1 - 14 - 2023); // June 14, 2023, 00:00:00
-console.log("myCreateDate:", myCreateDate);
-console.log("myCreateDate.getFullYear():", myCreateDate.getFullYear());
-console.log("myCreateDate.getMonth():", myCreateDate.getMonth() + 1); // Month is zero-indexed
-console.log("myCreateDate.getDate():", myCreateDate.getDate()); // Day of the month
+// let myCreateDate = new Date(2023, 5, 14); // June 14, 2023, 00:00:00 (Note: Month is zero-indexed)
+// console.log("myCreateDate:", myCreateDate);
+// console.log("myCreateDate.getFullYear():", myCreateDate.getFullYear());
+// console.log("myCreateDate.getMonth():", myCreateDate.getMonth() + 1); // Month is zero-indexed
+// console.log("myCreateDate.getDate():", myCreateDate.getDate()); // Day of the month
