@@ -65,7 +65,7 @@ console.log("Joined heroes with ' - ':", dashedString); // "Iron Man - Captain A
 // slice(startIndex, endIndex): Returns a shallow copy of a portion of an array into a new array object.
 // It does NOT modify the original array. The `endIndex` is not included.
 const originalArray = [0, 1, 2, 3, 4, 5];
-console.log("Original Array:", originalArray);
+console.log("Original Array:", originalArray); //
 
 const slicedArray = originalArray.slice(1, 4); // Slices from index 1 up to (but not including) index 4
 console.log("Sliced Array (slice(1, 4)):", slicedArray); // [1, 2, 3]
