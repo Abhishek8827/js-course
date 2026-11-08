@@ -31,7 +31,7 @@ function loginUserMsg(username = "User", isLoggedIn = true) {
 // console.log(loginUserMsg("Abhishek", true)); // Returns "Welcome Abhishek!"
 
 // console.log(loginUserMsg("Abhishek", false)); // Returns "Please log in to continue."
-console.log(loginUserMsg()); // Returns "Welcome User!"
+// console.log(loginUserMsg()); // Returns "Welcome User!"
 
 // console.log() // returns undefined because we are not passing any arguments to the function and the default values are used.
 
@@ -39,11 +39,24 @@ console.log(loginUserMsg()); // Returns "Welcome User!"
 function calculateRectangleArea(length, width) {
   return length * width;
 }
-console.log(
-  "Area of rectangle with length 5 and width 10 is: " +
-    calculateRectangleArea(5, 10),
-); // Returns 50
+// console.log(
+//   "Area of rectangle with length 5 and width 10 is: " +
+//     calculateRectangleArea(5, 10),
+// ); // Returns 50
 
 // calculateRectangleArea //reference to the function
 
 // calculateRectangleArea() //function call
+
+// Fucntion to find lcm of two numbers
+function lcm(a, b) {
+  let max = a > b ? a : b;
+
+  while (max % a !== 0 || max % b !== 0) {
+    max++;
+  }
+
+  return max;
+}
+
+console.log(lcm(4, 6)); // 12
