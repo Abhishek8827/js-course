@@ -32,3 +32,6 @@ console.log(
   "Area of rectangle with length 5 and width 10 is: " +
     calculateRectangleArea(5, 10),
 ); // Returns 50
+
+// calculateRectangleArea //reference to the function
+// calculateRectangleArea() //function call
