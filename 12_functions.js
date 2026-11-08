@@ -23,3 +23,12 @@ function loginUserMsg(username = "User", isLoggedIn = true) {
 // console.log(loginUserMsg("Abhishek", true)); // Returns "Welcome Abhishek!"
 // console.log(loginUserMsg("Abhishek", false)); // Returns "Please log in to continue."
 console.log(loginUserMsg()); // Returns "Welcome User!"
+
+// Function to calculate the area of a rectangle
+function calculateRectangleArea(length, width) {
+  return length * width;
+}
+console.log(
+  "Area of rectangle with length 5 and width 10 is: " +
+    calculateRectangleArea(5, 10),
+); // Returns 50
