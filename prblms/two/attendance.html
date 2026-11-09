@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f4f6f1" />
-    <title>Class Attendance</title>
+    <title>Class Attendance — Read-Only Register</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,18 +17,30 @@
   <body>
     <main class="page-shell">
       <header class="topbar">
-        <a class="wordmark" href="#" aria-label="Classroom home">
-          <span class="wordmark-mark" aria-hidden="true">C</span>
-          <span>classroom</span>
+        <a class="wordmark" href="#" id="home-link" aria-label="Classroom home">
+          <span class="wordmark-mark" aria-hidden="true">T</span>
+          <span id="school-name-label">classroom</span>
         </a>
-        <span class="topbar-label">ACADEMIC RECORDS</span>
+        <div class="topbar-actions">
+          <span class="readonly-badge" id="session-badge">READ-ONLY</span>
+          <button
+            type="button"
+            class="ghost-btn"
+            id="open-settings-btn"
+            title="Configure TVSMNEPA API connection"
+          >
+            API Settings
+          </button>
+        </div>
       </header>
 
       <section class="page-heading" aria-labelledby="page-title">
         <div>
-          <p class="eyebrow">DAILY REGISTER</p>
+          <p class="eyebrow" id="heading-eyebrow">DAILY REGISTER</p>
           <h1 id="page-title">Attendance</h1>
-          <p class="heading-copy">A clear view of who's in class today.</p>
+          <p class="heading-copy" id="heading-subtitle">
+            Live read-only attendance data synced from your school management app.
+          </p>
         </div>
         <div class="date-stamp" aria-live="polite">
           <span class="date-stamp-dot" aria-hidden="true"></span>
@@ -38,7 +50,7 @@
 
       <section class="toolbar" aria-label="Attendance filters">
         <label class="field-group" for="class-select">
-          <span class="field-label">CLASS</span>
+          <span class="field-label">VIEW / CLASS</span>
           <select id="class-select" disabled>
             <option value="">Loading classes...</option>
           </select>
@@ -48,11 +60,11 @@
           <input id="attendance-date" type="date" />
         </label>
         <label class="search-field" for="student-search">
-          <span class="field-label">FIND A STUDENT</span>
+          <span class="field-label" id="search-label">FIND CLASS OR STUDENT</span>
           <input
             id="student-search"
             type="search"
-            placeholder="Search name or ID"
+            placeholder="Search name, scholar no, or class"
             autocomplete="off"
           />
         </label>
@@ -62,34 +74,43 @@
         <article class="summary-item summary-total">
           <span class="summary-label">ENROLLED</span>
           <strong id="total-count">--</strong>
-          <span class="summary-note">students in this class</span>
+          <span class="summary-note" id="total-note">active students</span>
         </article>
         <article class="summary-item summary-present">
           <span class="summary-label">PRESENT</span>
           <strong id="present-count">--</strong>
-          <span class="summary-note">checked in</span>
+          <span class="summary-note" id="present-note">marked present</span>
         </article>
         <article class="summary-item summary-absent">
           <span class="summary-label">ABSENT</span>
           <strong id="absent-count">--</strong>
-          <span class="summary-note">not in class</span>
+          <span class="summary-note" id="absent-note">marked absent</span>
         </article>
         <article class="summary-item summary-late">
-          <span class="summary-label">LATE</span>
-          <strong id="late-count">--</strong>
-          <span class="summary-note">arrived late</span>
+          <span class="summary-label">UNMARKED</span>
+          <strong id="unmarked-count">--</strong>
+          <span class="summary-note" id="rate-note">--% attendance rate</span>
         </article>
       </section>
 
       <section class="register" aria-labelledby="register-title">
         <div class="register-heading">
           <div>
-            <p class="eyebrow">CLASS REGISTER</p>
-            <h2 id="register-title">Student list</h2>
+            <p class="eyebrow" id="register-eyebrow">SCHOOL OVERVIEW</p>
+            <h2 id="register-title">Attendance Register</h2>
           </div>
-          <span class="record-count" id="record-count" aria-live="polite"
-            >Waiting for data</span
-          >
+          <div class="register-actions">
+            <button
+              type="button"
+              class="ghost-btn hidden"
+              id="back-overview-btn"
+            >
+              ← All Classes
+            </button>
+            <span class="record-count" id="record-count" aria-live="polite"
+              >Waiting for data</span
+            >
+          </div>
         </div>
 
         <div
@@ -99,19 +120,17 @@
           aria-live="polite"
         >
           <span class="status-indicator" aria-hidden="true"></span>
-          <span id="status-text"
-            >Connect an attendance API to load the register.</span
-          >
+          <span id="status-text">Connecting to TVSMNEPA Attendance API...</span>
         </div>
 
         <div class="table-scroll">
           <table>
-            <thead>
+            <thead id="table-head">
               <tr>
                 <th scope="col">STUDENT</th>
-                <th scope="col">STUDENT ID</th>
+                <th scope="col">SCHOLAR NO</th>
                 <th scope="col">STATUS</th>
-                <th scope="col">CHECK-IN</th>
+                <th scope="col">MARKED AT</th>
               </tr>
             </thead>
             <tbody id="attendance-rows">
@@ -124,9 +143,110 @@
       </section>
 
       <footer class="page-footer">
-        <span>CLASSROOM <span class="footer-dot">/</span> ATTENDANCE</span>
+        <span>TVSMNEPA <span class="footer-dot">/</span> READ-ONLY ATTENDANCE PORTAL</span>
         <span id="updated-label">No data loaded</span>
       </footer>
     </main>
+
+    <!-- API Connection Settings Modal (for Live Server / Direct testing) -->
+    <dialog class="modal" id="settings-modal">
+      <form class="modal-card" id="settings-form" method="dialog">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">CONNECTION</p>
+            <h3>TVSMNEPA Read-Only API</h3>
+          </div>
+          <button type="button" class="icon-close" id="close-settings-btn" aria-label="Close">
+            ✕
+          </button>
+        </div>
+        <p class="modal-note" id="connection-mode-note">
+          For production, set <code>TVSM_API_BASE_URL</code> and <code>TVSM_API_KEY</code> in
+          <code>prblms/two/.env</code> and run <code>npm start</code>. For quick testing (e.g. Live Server),
+          you can also connect directly below for this browser session.
+        </p>
+        <label class="field-group">
+          <span class="field-label">TVSMNEPA EXTERNAL API URL</span>
+          <input
+            type="url"
+            id="direct-api-url"
+            placeholder="http://localhost:5000/api/v1/external"
+          />
+        </label>
+        <label class="field-group">
+          <span class="field-label">READ-ONLY API KEY (X-API-Key)</span>
+          <input
+            type="password"
+            id="direct-api-key"
+            placeholder="tvsm_ro_..."
+            autocomplete="off"
+          />
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="ghost-btn" id="clear-direct-btn">
+            Use Backend Proxy (.env)
+          </button>
+          <button type="submit" class="primary-btn">Save &amp; Connect</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Private Portal Passcode Modal (shown only when PORTAL_ACCESS_CODE is set in .env) -->
+    <dialog class="modal" id="passcode-modal">
+      <form class="modal-card" id="passcode-form">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">PRIVATE ACCESS</p>
+            <h3>Enter Portal Access Code</h3>
+          </div>
+        </div>
+        <p class="modal-note">
+          This attendance portal is private. Enter your authorized access code to view records.
+        </p>
+        <label class="field-group">
+          <span class="field-label">ACCESS CODE</span>
+          <input
+            type="password"
+            id="portal-passcode-input"
+            placeholder="Enter access code"
+            required
+            autocomplete="off"
+          />
+        </label>
+        <p class="error-text hidden" id="passcode-error"></p>
+        <div class="modal-actions">
+          <button type="submit" class="primary-btn">Unlock Attendance</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Student Attendance History Modal -->
+    <dialog class="modal" id="student-modal">
+      <div class="modal-card modal-wide">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow" id="student-modal-scholar">SCHOLAR</p>
+            <h3 id="student-modal-name">Student History</h3>
+          </div>
+          <button type="button" class="icon-close" id="close-student-btn" aria-label="Close">
+            ✕
+          </button>
+        </div>
+        <p class="modal-note" id="student-modal-meta"></p>
+        <div class="mini-stats" id="student-modal-stats"></div>
+        <div class="history-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>DATE</th>
+                <th>STATUS</th>
+                <th>MARKED AT</th>
+              </tr>
+            </thead>
+            <tbody id="student-history-rows"></tbody>
+          </table>
+        </div>
+      </div>
+    </dialog>
   </body>
 </html>
