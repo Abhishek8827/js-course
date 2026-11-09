@@ -22,7 +22,6 @@
 }
 
 body {
-  min-width: 320px;
   margin: 0;
   background-color: var(--canvas);
   background-image: radial-gradient(#dbe4d9 0.7px, transparent 0.7px);

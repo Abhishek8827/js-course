@@ -29,6 +29,8 @@ Running `server.js` keeps your `TVSM_API_KEY` completely hidden on the backend s
    ```
    Open **`http://localhost:4000`**.
 
+You can also save `TVSM_API_BASE_URL` and `TVSM_API_KEY` from **API Settings → Save Permanently to .env** while using the locally served portal. The settings endpoint accepts requests only from this computer. The `.env` file is ignored by Git.
+
 ## Quick Browser / Live Server Testing
 
-If you open `attendance.html` directly with VS Code Live Server, click **API Settings** in the top-right corner and enter your `TVSMNEPA External API URL` + `tvsm_ro_...` key (saved only in `sessionStorage` for your current tab).
+If you open `attendance.html` directly with VS Code Live Server, click **API Settings** and enter your `TVSMNEPA External API URL` + `tvsm_ro_...` key. **Save & Connect** stores it only in `sessionStorage` for the current tab. Permanent saving requires opening the portal through `npm start` at `http://localhost:4000`.

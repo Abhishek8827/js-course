@@ -161,9 +161,8 @@
           </button>
         </div>
         <p class="modal-note" id="connection-mode-note">
-          For production, set <code>TVSM_API_BASE_URL</code> and <code>TVSM_API_KEY</code> in
-          <code>prblms/two/.env</code> and run <code>npm start</code>. For quick testing (e.g. Live Server),
-          you can also connect directly below for this browser session.
+          Start the portal with <code>npm start</code> to save credentials permanently to
+          <code>prblms/two/.env</code>. Direct connection below is saved only for this browser tab.
         </p>
         <label class="field-group">
           <span class="field-label">TVSMNEPA EXTERNAL API URL</span>
@@ -182,9 +181,10 @@
             autocomplete="off"
           />
         </label>
+        <p class="modal-note" id="settings-feedback" role="status" aria-live="polite"></p>
         <div class="modal-actions">
-          <button type="button" class="ghost-btn" id="clear-direct-btn">
-            Use Backend Proxy (.env)
+          <button type="button" class="ghost-btn" id="save-permanent-btn">
+            Save Permanently to .env
           </button>
           <button type="submit" class="primary-btn">Save &amp; Connect</button>
         </div>

@@ -45,7 +45,8 @@ const elements = {
   settingsModal: document.querySelector("#settings-modal"),
   settingsForm: document.querySelector("#settings-form"),
   closeSettingsBtn: document.querySelector("#close-settings-btn"),
-  clearDirectBtn: document.querySelector("#clear-direct-btn"),
+  savePermanentBtn: document.querySelector("#save-permanent-btn"),
+  settingsFeedback: document.querySelector("#settings-feedback"),
   directApiUrlInput: document.querySelector("#direct-api-url"),
   directApiKeyInput: document.querySelector("#direct-api-key"),
 
@@ -697,11 +698,41 @@ elements.settingsForm.addEventListener("submit", async (e) => {
   await loadClassesAndBoot();
 });
 
-elements.clearDirectBtn.addEventListener("click", async () => {
-  sessionStorage.removeItem(STORAGE_URL_KEY);
-  sessionStorage.removeItem(STORAGE_API_KEY);
-  elements.settingsModal.close();
-  await initPortal();
+elements.savePermanentBtn.addEventListener("click", async () => {
+  const baseUrl = elements.directApiUrlInput.value.trim().replace(/\/+$/, "");
+  const apiKey = elements.directApiKeyInput.value.trim();
+  elements.settingsFeedback.textContent = "";
+
+  if (!baseUrl || !apiKey) {
+    elements.settingsFeedback.textContent = "Enter both the API URL and API key.";
+    return;
+  }
+
+  elements.savePermanentBtn.disabled = true;
+  elements.settingsFeedback.textContent = "Saving securely to the local .env file...";
+
+  try {
+    const response = await fetch("/api/settings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ baseUrl, apiKey }),
+    });
+    const result = await response.json();
+    if (!response.ok || !result?.data?.persisted) {
+      throw new Error(result.message || `Save failed (${response.status})`);
+    }
+
+    sessionStorage.removeItem(STORAGE_URL_KEY);
+    sessionStorage.removeItem(STORAGE_API_KEY);
+    elements.settingsModal.close();
+    setStatus("API settings saved permanently to the local .env file.");
+    await loadClassesAndBoot();
+  } catch (error) {
+    elements.settingsFeedback.textContent =
+      `${error.message} Open the portal with npm start to save permanently.`;
+  } finally {
+    elements.savePermanentBtn.disabled = false;
+  }
 });
 
 // Passcode dialog events
