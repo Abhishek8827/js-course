@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f6f1" />
+    <title>Class Attendance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="attendance.css" />
+    <script src="attendance.js" defer></script>
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="topbar">
+        <a class="wordmark" href="#" aria-label="Classroom home">
+          <span class="wordmark-mark" aria-hidden="true">C</span>
+          <span>classroom</span>
+        </a>
+        <span class="topbar-label">ACADEMIC RECORDS</span>
+      </header>
+
+      <section class="page-heading" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">DAILY REGISTER</p>
+          <h1 id="page-title">Attendance</h1>
+          <p class="heading-copy">A clear view of who's in class today.</p>
+        </div>
+        <div class="date-stamp" aria-live="polite">
+          <span class="date-stamp-dot" aria-hidden="true"></span>
+          <span id="date-label">TODAY</span>
+        </div>
+      </section>
+
+      <section class="toolbar" aria-label="Attendance filters">
+        <label class="field-group" for="class-select">
+          <span class="field-label">CLASS</span>
+          <select id="class-select" disabled>
+            <option value="">Loading classes...</option>
+          </select>
+        </label>
+        <label class="field-group date-field" for="attendance-date">
+          <span class="field-label">DATE</span>
+          <input id="attendance-date" type="date" />
+        </label>
+        <label class="search-field" for="student-search">
+          <span class="field-label">FIND A STUDENT</span>
+          <input
+            id="student-search"
+            type="search"
+            placeholder="Search name or ID"
+            autocomplete="off"
+          />
+        </label>
+      </section>
+
+      <section class="summary-grid" aria-label="Attendance summary">
+        <article class="summary-item summary-total">
+          <span class="summary-label">ENROLLED</span>
+          <strong id="total-count">--</strong>
+          <span class="summary-note">students in this class</span>
+        </article>
+        <article class="summary-item summary-present">
+          <span class="summary-label">PRESENT</span>
+          <strong id="present-count">--</strong>
+          <span class="summary-note">checked in</span>
+        </article>
+        <article class="summary-item summary-absent">
+          <span class="summary-label">ABSENT</span>
+          <strong id="absent-count">--</strong>
+          <span class="summary-note">not in class</span>
+        </article>
+        <article class="summary-item summary-late">
+          <span class="summary-label">LATE</span>
+          <strong id="late-count">--</strong>
+          <span class="summary-note">arrived late</span>
+        </article>
+      </section>
+
+      <section class="register" aria-labelledby="register-title">
+        <div class="register-heading">
+          <div>
+            <p class="eyebrow">CLASS REGISTER</p>
+            <h2 id="register-title">Student list</h2>
+          </div>
+          <span class="record-count" id="record-count" aria-live="polite"
+            >Waiting for data</span
+          >
+        </div>
+
+        <div
+          class="status-message"
+          id="status-message"
+          role="status"
+          aria-live="polite"
+        >
+          <span class="status-indicator" aria-hidden="true"></span>
+          <span id="status-text"
+            >Connect an attendance API to load the register.</span
+          >
+        </div>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">STUDENT</th>
+                <th scope="col">STUDENT ID</th>
+                <th scope="col">STATUS</th>
+                <th scope="col">CHECK-IN</th>
+              </tr>
+            </thead>
+            <tbody id="attendance-rows">
+              <tr class="empty-row">
+                <td colspan="4">Attendance records will appear here.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <span>CLASSROOM <span class="footer-dot">/</span> ATTENDANCE</span>
+        <span id="updated-label">No data loaded</span>
+      </footer>
+    </main>
+  </body>
+</html>
