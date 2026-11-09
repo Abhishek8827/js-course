@@ -62,7 +62,11 @@ const isLoopbackAddress = (address) => {
 
 const isLoopbackHost = (hostname) => {
   const normalized = String(hostname || "").toLowerCase();
-  return normalized === "localhost" || normalized === "::1" || normalized.startsWith("127.");
+  return (
+    normalized === "localhost" ||
+    normalized === "::1" ||
+    normalized.startsWith("127.")
+  );
 };
 
 function quoteEnvValue(value) {
@@ -86,7 +90,9 @@ async function saveApiSettings(baseUrl, apiKey) {
   const lines = contents ? contents.split(/\r?\n/) : [];
   const missing = new Set(updates.keys());
   const updatedLines = lines.map((line) => {
-    const match = line.match(/^\s*(?:export\s+)?(TVSM_API_BASE_URL|TVSM_API_KEY)\s*=/);
+    const match = line.match(
+      /^\s*(?:export\s+)?(TVSM_API_BASE_URL|TVSM_API_KEY)\s*=/,
+    );
     if (!match) return line;
     missing.delete(match[1]);
     return `${match[1]}=${quoteEnvValue(updates.get(match[1]))}`;
@@ -103,7 +109,10 @@ async function saveApiSettings(baseUrl, apiKey) {
   );
 
   try {
-    await fs.writeFile(temporaryPath, output, { encoding: "utf8", mode: 0o600 });
+    await fs.writeFile(temporaryPath, output, {
+      encoding: "utf8",
+      mode: 0o600,
+    });
     await fs.rename(temporaryPath, envPath);
   } catch (error) {
     await fs.unlink(temporaryPath).catch(() => {});
@@ -125,7 +134,8 @@ app.post("/api/settings", async (req, res) => {
   const origin = req.get("Origin");
   if (origin) {
     try {
-      if (!isLoopbackHost(new URL(origin).hostname)) throw new Error("Invalid origin");
+      if (!isLoopbackHost(new URL(origin).hostname))
+        throw new Error("Invalid origin");
     } catch {
       return res.status(403).json({
         success: false,
@@ -134,7 +144,9 @@ app.post("/api/settings", async (req, res) => {
     }
   }
 
-  const baseUrl = String(req.body?.baseUrl || "").trim().replace(/\/+$/, "");
+  const baseUrl = String(req.body?.baseUrl || "")
+    .trim()
+    .replace(/\/+$/, "");
   const apiKey = String(req.body?.apiKey || "").trim();
   let parsedBaseUrl;
 

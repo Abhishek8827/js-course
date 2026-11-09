@@ -239,7 +239,9 @@ function renderOverviewTable() {
     wrap.className = "student-name";
     const avatar = document.createElement("span");
     avatar.className = "student-avatar";
-    avatar.textContent = String(cls.name || "C").slice(0, 3).toUpperCase();
+    avatar.textContent = String(cls.name || "C")
+      .slice(0, 3)
+      .toUpperCase();
     const meta = document.createElement("div");
     meta.className = "student-meta";
     const title = document.createElement("span");
@@ -279,7 +281,15 @@ function renderOverviewTable() {
     btn.textContent = "Open Register →";
     actionTd.append(btn);
 
-    tr.append(nameTd, teacherTd, totalTd, presentTd, absentTd, rateTd, actionTd);
+    tr.append(
+      nameTd,
+      teacherTd,
+      totalTd,
+      presentTd,
+      absentTd,
+      rateTd,
+      actionTd,
+    );
     elements.rows.append(tr);
   });
 }
@@ -704,17 +714,22 @@ elements.savePermanentBtn.addEventListener("click", async () => {
   elements.settingsFeedback.textContent = "";
 
   if (!baseUrl || !apiKey) {
-    elements.settingsFeedback.textContent = "Enter both the API URL and API key.";
+    elements.settingsFeedback.textContent =
+      "Enter both the API URL and API key.";
     return;
   }
 
   elements.savePermanentBtn.disabled = true;
-  elements.settingsFeedback.textContent = "Saving securely to the local .env file...";
+  elements.settingsFeedback.textContent =
+    "Saving securely to the local .env file...";
 
   try {
     const response = await fetch("/api/settings", {
       method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
       body: JSON.stringify({ baseUrl, apiKey }),
     });
     const result = await response.json();
@@ -728,8 +743,7 @@ elements.savePermanentBtn.addEventListener("click", async () => {
     setStatus("API settings saved permanently to the local .env file.");
     await loadClassesAndBoot();
   } catch (error) {
-    elements.settingsFeedback.textContent =
-      `${error.message} Open the portal with npm start to save permanently.`;
+    elements.settingsFeedback.textContent = `${error.message} Open the portal with npm start to save permanently.`;
   } finally {
     elements.savePermanentBtn.disabled = false;
   }
